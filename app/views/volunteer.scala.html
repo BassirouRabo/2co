@@ -1,0 +1,128 @@
+@import java.util
+
+
+@(mouvments: util.List[Mouvment])
+
+
+@main("Community Coins | Profil") {
+    <div class="element-wrapper">
+        <div class="content-box">
+            <div class="row">
+                <div class="col-sm-5">
+                    <div class="user-profile compact">
+                        <div class="up-head-w" style="background-image: url(img/profile_bg1.jpg)">
+                            <div class="up-main-info">
+                                <h2 class="up-header">
+                                    VOLUNTEER :
+                                        @if(mouvments.size() > 0) {
+                                            @mouvments.get(0).getVolunteer.getName
+                                        }
+                                </h2>
+                                <h6 class="up-sub-header">
+
+                                </h6>
+                            </div>
+                            <svg class="decor" width="842px"
+                            height="219px" viewBox="0 0 842 219" preserveAspectRatio="xMaxYMax meet"
+                            version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                <g transform="translate(-381.000000, -362.000000)" fill="#FFFFFF">
+                                    <path class="decor-path"
+                                    d="M1223,362 L1223,581 L381,581 C868.912802,575.666667 1149.57947,502.666667 1223,362 Z"></path>
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="up-controls">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="value-pair">
+                                        <div class="label">
+                                            Solde:
+                                        </div>
+                                        <div class="value badge badge-pill badge-success">
+                                            <strong>
+                                                @if(mouvments.size() > 0) {
+                                                    @mouvments.get(0).getVolunteer.getWallet
+                                                }
+                                            </strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-7">
+                    <div class="element-wrapper">
+                        <div class="element-box">
+                            <form method="post" action="">
+                                @helper.CSRF.formField
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="username"> Username</label>
+                                            <input id="username" type="text" name="nom" class="form-control" required="required" value="">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="password"> Password</label>
+                                            <input id="password" type="password" name="password" class="form-control" required="required" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="passwordConfirm"> Confirm password</label>
+                                            <input id="passwordConfirm" type="password" name="passwordConfirm" class="form-control" required="required" value="">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-buttons-w">
+                                    <input type="hidden" name="profil" value="1">
+                                    <button class="btn btn-sm btn-secondary" type="submit"> Update</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="table-responsive">
+                    <h5 class="up-header">MOUVMENTS</h5>
+                    <table class="table table-padded">
+                        <thead>
+                            <tr>
+                                <th>DATE</th>
+                                <th>GIVEN BY</th>
+                                <th>COINS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for(mouvment <- mouvments) {
+                            <tr>
+                                <td>
+                                    <span>@mouvment.getDate</span>
+                                </td>
+                                <td>
+                                    <span>@mouvment.getVolunteer.getName</span>
+                                </td>
+                                <td>
+                                    <span>@mouvment.getMontant</span>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+}

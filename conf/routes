@@ -1,0 +1,27 @@
+
+
+# Main
+GET         /                           controllers.MainController.index()
+GET         /analytics                           controllers.MainController.analytics()
+
+# Volunteer
+GET         /volunteers                 controllers.VolunteerController.reads()
+GET         /volunteers/:id               controllers.VolunteerController.read(id: Long)
+POST        /volunteers                   controllers.VolunteerController.create()
+POST        /volunteers/:id/update        controllers.VolunteerController.update(id: Long)
+
+# Ngo
+GET         /ngos                   controllers.NgoController.reads()
+GET         /ngos/:id               controllers.NgoController.read(id: Long)
+POST        /ngos                   controllers.NgoController.create()
+GET         /ngos/:id/update        controllers.NgoController.update(id: Long)
+
+# Mouvment
+GET         /mouvments                                  controllers.MouvmentController.reads()
+POST        /mouvments                                  controllers.MouvmentController.create()
+GET         /mouvments/ngos/:idNgos                     controllers.MouvmentController.readsByNgos(idNgos: Long)
+GET         /mouvments/volunteers/:idVolunteers         controllers.MouvmentController.readsByVolunteers(idVolunteers: Long)
+
+
+
+GET     /assets/*file               controllers.Assets.at(path="/public", file)

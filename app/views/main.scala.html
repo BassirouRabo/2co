@@ -1,0 +1,32 @@
+@(title: String)(content: Html)
+
+<!DOCTYPE html>
+<html>
+    @head(title)
+<body>
+    <div class="all-wrapper menu-side solid-bg-all">
+        <div class="top-menu-secondary with-overflow color-scheme-dark">
+            <div class="logo-w menu-size">
+                <a class="logo" href="">
+                    <img src="@routes.Assets.at("img/logo.png")"><span>Community - Coins</span></a>
+            </div>
+        </div>
+
+        <div class="layout-w">
+            @menu_mobile()
+            @menu_side()
+            <div class="content-w">
+                <div class="content-i">
+                    <div class="content-box">
+                        @content
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="display-type"></div>
+    </div>
+
+    @foot()
+
+</body>
+</html>

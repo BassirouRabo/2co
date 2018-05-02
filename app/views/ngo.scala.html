@@ -1,0 +1,42 @@
+@import java.util
+
+
+@(mouvments: util.List[Mouvment])
+
+@main("Community Coins | N.G.O") {
+
+    <div class="element-wrapper">
+        <div class="element-box-tp">
+            @if(!mouvments.isEmpty){
+                <h6 class="element-header">ORGANZATIONS : @mouvments.get(0).getNgo.getName</h6>
+            }
+            <div class="table-responsive">
+                <table class="table table-padded">
+                    <thead>
+                        <tr>
+                            <th>#DATE</th>
+                            <th>GIVEN TO</th>
+                            <th>AMOUNT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @for(mouvment <- mouvments) {
+                        <tr>
+                            <td>
+                                <span>@mouvment.getDate.format("dd/MM/yyyy")</span>
+                            </td>
+                            <td>
+                                <span>@mouvment.getVolunteer.getName</span>
+                            </td>
+                            <td>
+                                <span>@mouvment.getMontant</span>
+                            </td>
+
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}

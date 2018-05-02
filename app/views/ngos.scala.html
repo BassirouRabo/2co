@@ -1,0 +1,74 @@
+@import java.util
+
+
+@(ngos: util.List[Ngo])
+
+@main("Community Coins | N.G.O") {
+
+    <div class="element-wrapper">
+        <h6 class="element-header">ORGANZATIONS</h6>
+        <div class="element-box">
+            <form method="post" action="@controllers.routes.NgoController.create()">
+                @helper.CSRF.formField
+
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-4" for="nom"> Name</label>
+                    <div class="col-sm-4">
+                        <input id="name" type="text" name="name" class="form-control" placeholder="Name" required="required">
+                    </div>
+                </div>
+
+                <div class="form-buttons-w">
+                    <button class="btn btn-sm btn-secondary" type="submit"> Ajouter</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+
+    <div class="element-wrapper">
+        <div class="element-box-tp">
+            <div class="table-responsive">
+                <table class="table table-padded">
+                    <thead>
+                        <tr>
+                            <th>NAME</th>
+                            <th>STATUS</th>
+                            <th>WALLET</th>
+                            <th>#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @for(ngo <- ngos) {
+                        <tr>
+                            <td>
+                                <span>@ngo.getName</span>
+                            </td>
+                            <td>
+                                <span>
+                                @if(ngo.getStatus == 0) {
+                                    <button class="btn btn-sm btn-danger" type="submit"> Not validate</button>
+                                }
+                                    @if(ngo.getStatus != 0) {
+                                <button class="btn btn-sm btn-success" type="submit"> Validate</button>
+                                    }
+
+                                </span>
+                            </td>
+                            <td>
+                                <span>@ngo.getWallet</span>
+                            </td>
+                            <td class="row-actions">
+                                <a class="default" href="@controllers.routes.NgoController.read(ngo.getId)" title="Mouvments" data-placement="top" data-toggle="tooltip"><i class="icon-pencil"></i></a>
+                                <a class="success" href="@controllers.routes.NgoController.update(ngo.getId)" title="Validate" data-placement="top" data-toggle="tooltip"><i class="icon-pencil"></i></a>
+
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}

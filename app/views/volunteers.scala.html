@@ -1,0 +1,63 @@
+@import java.util
+
+
+@(volunteers: util.List[Volunteer])
+
+@main("Community Coins | N.G.O") {
+
+    <div class="element-wrapper">
+        <h6 class="element-header">Volunteers</h6>
+        <div class="element-box">
+            <form method="post" action="@controllers.routes.VolunteerController.create()">
+                @helper.CSRF.formField
+
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-4" for="nom"> Name</label>
+                    <div class="col-sm-4">
+                        <input id="name" type="text" name="name" class="form-control" placeholder="Name" required="required">
+                    </div>
+                </div>
+
+                <div class="form-buttons-w">
+                    <button class="btn btn-sm btn-secondary" type="submit"> Ajouter</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <div class="element-wrapper">
+        <div class="element-box-tp">
+            <div class="table-responsive">
+                <table class="table table-padded">
+                    <thead>
+                        <tr>
+                            <th>#ID</th>
+                            <th>NAME</th>
+                            <th>SOLD</th>
+                            <td>##</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @for(volunteer <- volunteers) {
+                        <tr>
+                            <td>
+                                <span>@volunteer.getId</span>
+                            </td>
+                            <td>
+                                <span>@volunteer.getName</span>
+                            </td>
+                            <td>
+                                <span>@volunteer.getWallet</span>
+                            </td>
+                            <td class="row-actions">
+                                <a href="@controllers.routes.VolunteerController.read(volunteer.getId)"  title="Detail volunteer" data-placement="top" data-toggle="tooltip"><i class="icon-pencil"></i></a>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}

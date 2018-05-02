@@ -1,0 +1,73 @@
+@import java.util
+
+
+@(mouvments: util.List[Mouvment])
+
+@main("Community Coins") {
+
+    <form method="post" action="@controllers.routes.MouvmentController.create()">
+        @helper.CSRF.formField
+
+        <div class="form-group row">
+            <label class="col-form-label col-sm-4" for="nom"> Volonteer</label>
+            <div class="col-sm-4">
+                <input id="volunteer_id" type="number" name="volunteer.id" class="form-control" placeholder="Volonteer" min="0" required="required">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-form-label col-sm-4" for="nom"> Organisation</label>
+            <div class="col-sm-4">
+                <input id="ngo_id" type="number" name="ngo.id" class="form-control" placeholder="ngo.id" min="0" required="required">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-form-label col-sm-4" for="nom"> Number</label>
+            <div class="col-sm-4">
+                <input id="montant" type="number" name="montant" class="form-control" placeholder="Number" min="0" required="required">
+            </div>
+        </div>
+
+        <div class="form-buttons-w">
+            <button class="btn btn-sm btn-secondary" type="submit"> Add</button>
+        </div>
+    </form>
+
+    <div class="element-wrapper">
+        <div class="element-box-tp">
+            <div class="table-responsive">
+                <table class="table table-padded">
+                    <thead>
+                        <tr>
+                            <th>#DATE</th>
+                            <th>VOLONTEERS</th>
+                            <th>N.G.O</th>
+                            <th>QUANTITY</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @for(mouvment <- mouvments) {
+                        <tr>
+                            <td>
+                                <span>@mouvment.getDate.format("dd/MM/yyyy")</span>
+                            </td>
+                            <td>
+                                <span>@mouvment.getVolunteer.getName</span>
+                            </td>
+                            <td>
+                                <span>@mouvment.getNgo.getName</span>
+                            </td>
+                            <td>
+                                <span>@mouvment.getMontant</span>
+                            </td>
+
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+}
