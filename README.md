@@ -1,11 +1,3 @@
-[<img src="https://img.shields.io/travis/playframework/play-java-jpa-example.svg"/>](https://travis-ci.org/playframework/play-java-jpa-example)
+# Community Coin
 
-# play-java-jpa-example
-
-This project demonstrates how to create a simple database application with Play, using JPA.
-
-Please see the Play documentation for more details:
-
-* https://www.playframework.com/documentation/latest/JavaJPA
-* https://www.playframework.com/documentation/latest/ThreadPools
-* https://www.playframework.com/documentation/latest/JavaAsync
+We are launching Community Coin - a revolutionary form of social currency rewarding meaningful actions in communities worldwide. We proof you belong! Tech-wise, this is probably world's first fully Messenger based coin system. Community Coin invite people to be create meaningful community change within FB groups and gradually, within larger communities. Community Coin will foster an expandable system of trust and kindness. Using blockchain, we transform meaningful community engagement into financial and status rewards. Community Coin aims to motivate people to be kind, open and supportive. In exchange, they will receive our virtual coin.
